@@ -91,7 +91,7 @@ gallery.insertAdjacentHTML('beforeend', galleryMarkup);
 
 new SimpleLightbox('.gallery-item a', {
   overlay: true,
-  // overlayOpacity: 0.7,
+  overlayOpacity: 0.8,
   captionsData: 'alt',
   captionDelay: 250,
 });

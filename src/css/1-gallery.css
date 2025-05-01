@@ -23,3 +23,15 @@
 .gallery-image:hover {
   transform: scale(1.1);
 }
+
+body .sl-overlay {
+  background: rgba(46, 47, 66);
+}
+
+body .sl-wrapper {
+  .sl-close,
+  .sl-counter,
+  .sl-navigation button {
+    color: #fff;
+  }
+}

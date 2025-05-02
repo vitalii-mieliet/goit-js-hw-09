@@ -67,12 +67,12 @@ const images = [
   },
 ];
 
-const gallery = document.querySelector('.gallery');
+const gallery = document.querySelector('.js-gallery');
 
 const galleryMarkup = images
   .map(
     ({ preview, original, description }) =>
-      `<li class="gallery-item">
+      `<li class="gallery-item js-gallery-item">
   <a class="gallery-link" href=${original}>
     <img
     width="320"
@@ -89,7 +89,7 @@ const galleryMarkup = images
 
 gallery.insertAdjacentHTML('beforeend', galleryMarkup);
 
-new SimpleLightbox('.gallery-item a', {
+new SimpleLightbox('.js-gallery-item a', {
   overlay: true,
   overlayOpacity: 0.8,
   captionsData: 'alt',

@@ -9,6 +9,8 @@ const form = document.querySelector('.js-form');
 form.addEventListener('input', onInput);
 form.addEventListener('submit', onFormSubmit);
 
+populateForm();
+
 function populateForm() {
   const savedData = getFromLS(LS_KEY);
   if (savedData) {

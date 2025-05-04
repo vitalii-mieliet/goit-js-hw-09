@@ -9,10 +9,11 @@ const form = document.querySelector('.js-form');
 form.addEventListener('input', onInput);
 form.addEventListener('submit', onFormSubmit);
 
-populateForm();
+populateForm(); // викликаю фукцію
 
 function populateForm() {
-  const savedData = getFromLS(LS_KEY);
+  // оголосив функцію і перенсі в неї - if (savedData)
+  const savedData = getFromLS(LS_KEY); //переніс зверху
   if (savedData) {
     const { email, message } = savedData;
     formData.email = email || '';

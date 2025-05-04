@@ -1,17 +1,14 @@
-const formData = { email: '', message: '' };
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+import { getFromLS, removeFromLS, saveInLS } from './local-storage';
+
 const LS_KEY = 'feedback-form-state';
+const formData = { email: '', message: '' };
 const form = document.querySelector('.js-form');
+const savedData = getFromLS(LS_KEY);
 
-function getFromLS(key) {
-  const savedData = localStorage.getItem(key);
-  if (savedData) {
-    return JSON.parse(savedData);
-  }
-  return null;
-}
-
-if (getFromLS(LS_KEY)) {
-  const { email, message } = getFromLS(LS_KEY);
+if (savedData) {
+  const { email, message } = savedData;
   formData.email = email || '';
   formData.message = message || '';
   form.elements.email.value = email;
@@ -21,12 +18,10 @@ if (getFromLS(LS_KEY)) {
 form.addEventListener('input', onInput);
 
 function onInput() {
-  const emailValue = form.elements.email.value.trim();
-  const messageValue = form.elements.message.value.trim();
-  formData.email = emailValue;
-  formData.message = messageValue;
+  formData.email = form.elements.email.value.trim();
+  formData.message = form.elements.message.value.trim();
 
-  localStorage.setItem(LS_KEY, JSON.stringify(formData));
+  saveInLS(LS_KEY, formData);
 }
 
 form.addEventListener('submit', onFormSubmit);
@@ -34,10 +29,26 @@ form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
   event.preventDefault();
   if (formData.email === '' || formData.message === '') {
-    alert('Fill please all fields');
+    iziToast.warning({
+      timeout: 5000,
+      message: 'Fill please all fields',
+      position: 'topRight',
+    });
     return;
   }
-  form.reset();
-  localStorage.removeItem(LS_KEY);
   console.log(formData);
+  form.reset();
+  removeFromLS(LS_KEY);
+  formData.email = '';
+  formData.message = '';
+  iziToast.success({
+    timeout: 5000,
+    position: 'topRight',
+    message: 'Message sent! We appreciate your input!',
+  });
 }
+// TODO Оптимізувати для роботи з формою з n-кількістю полей
+// TODO
+// TODO
+// TODO
+// TODO

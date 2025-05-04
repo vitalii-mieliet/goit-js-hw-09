@@ -5,17 +5,19 @@ import { getFromLS, removeFromLS, saveInLS } from './local-storage';
 const LS_KEY = 'feedback-form-state';
 const formData = { email: '', message: '' };
 const form = document.querySelector('.js-form');
-const savedData = getFromLS(LS_KEY);
 
 form.addEventListener('input', onInput);
 form.addEventListener('submit', onFormSubmit);
 
-if (savedData) {
-  const { email, message } = savedData;
-  formData.email = email || '';
-  formData.message = message || '';
-  form.elements.email.value = email;
-  form.elements.message.value = message;
+function populateForm() {
+  const savedData = getFromLS(LS_KEY);
+  if (savedData) {
+    const { email, message } = savedData;
+    formData.email = email || '';
+    formData.message = message || '';
+    form.elements.email.value = email;
+    form.elements.message.value = message;
+  }
 }
 
 function onInput() {

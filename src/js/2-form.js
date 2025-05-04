@@ -7,6 +7,9 @@ const formData = { email: '', message: '' };
 const form = document.querySelector('.js-form');
 const savedData = getFromLS(LS_KEY);
 
+form.addEventListener('input', onInput);
+form.addEventListener('submit', onFormSubmit);
+
 if (savedData) {
   const { email, message } = savedData;
   formData.email = email || '';
@@ -15,16 +18,11 @@ if (savedData) {
   form.elements.message.value = message;
 }
 
-form.addEventListener('input', onInput);
-
 function onInput() {
   formData.email = form.elements.email.value.trim();
   formData.message = form.elements.message.value.trim();
-
   saveInLS(LS_KEY, formData);
 }
-
-form.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
@@ -36,6 +34,7 @@ function onFormSubmit(event) {
     });
     return;
   }
+
   console.log(formData);
   form.reset();
   removeFromLS(LS_KEY);
@@ -48,7 +47,3 @@ function onFormSubmit(event) {
   });
 }
 // TODO Оптимізувати для роботи з формою з n-кількістю полей
-// TODO
-// TODO
-// TODO
-// TODO

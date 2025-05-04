@@ -15,10 +15,18 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.navigation {
+  color: white;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+}
+
 body {
+  background-color: #1c1a1a;
   display: flex;
   flex-direction: column;
-
+  min-width: 100vw;
   min-height: 100vh;
   margin: 0;
 }
